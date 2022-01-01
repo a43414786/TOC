@@ -1,5 +1,5 @@
 import json
-import transitions
+from transitions import Machine
 
 trans = []
 
@@ -18,9 +18,6 @@ with open("fsm.json") as f:
             
 
 from transitions.extensions import GraphMachine
-from transitions import Machine
-from functools import partial
-import cv2
 
 class Model(object):
     
@@ -40,10 +37,11 @@ def create_fsm_graph(model):
                             initial=data["init"],
                             auto_transitions=False,
                             show_conditions=True,)
+'''
 model = create_fsm()
 create_fsm_graph(model)
 model.get_graph().draw('my_fsm.png', prog='dot')
-
+'''
 '''model = create_fsm()
 create_fsm_graph(model)
 model.get_graph().draw('my_fsm.png', prog='dot')
