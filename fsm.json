@@ -1,48 +1,186 @@
 {
-    "states":["asleep","hanging out", "hungry", "sweaty", "saving the world"],
+    "states":["main","stock_end","stock_name","stock_id","stock","stock_date","hungry","getimg","acgimg","memeimg","boaring","play","signup","name","mail","check"],
 
     "state":
     [
         {
-            "trigger" : "wake_up",
-            "source" : "asleep",
-            "dest" : "hanging out"
+            "trigger" : "end",
+            "source" : "stock_end",
+            "dest" : "stock"
         },
-        {   
-            "trigger" : "work_out",
-            "source" : "hanging out",
+
+        {
+            "trigger" : "info",
+            "source" : "stock_name",
+            "dest" : "stock_end"
+        },
+        {
+            "trigger" : "info",
+            "source" : "stock_id",
+            "dest" : "stock_end"
+        },
+        {
+            "trigger" : "back",
+            "source" : "stock_end",
+            "dest" : "stock_name"
+        },
+        {
+            "trigger" : "back",
+            "source" : "stock_end",
+            "dest" : "stock_id"
+        },
+        
+
+        {
+            "trigger" : "stock_name",
+            "source" : "stock_date",
+            "dest" : "stock_name"
+        },
+        {
+            "trigger" : "back",
+            "source" : "stock_name",
+            "dest" : "stock_date"
+        },
+        {
+            "trigger" : "stock_id",
+            "source" : "stock_date",
+            "dest" : "stock_id"
+        },
+        {
+            "trigger" : "back",
+            "source" : "stock_id",
+            "dest" : "stock_date"
+        },
+
+        {
+            "trigger" : "stock_date",
+            "source" : "stock",
+            "dest" : "stock_date"
+        },
+
+        {
+            "trigger" : "back",
+            "source" : "stock_date",
+            "dest" : "stock"
+        },
+        {
+            "trigger" : "stock",
+            "source" : "main",
+            "dest" : "stock"
+        },
+
+        {
+            "trigger" : "back",
+            "source" : "stock",
+            "dest" : "main"
+        },
+
+        {
+            "trigger" : "boaring",
+            "source" : "main",
+            "dest" : "boaring"
+        },
+        
+        {
+            "trigger" : "back",
+            "source" : "boaring",
+            "dest" : "main"
+        },
+
+        {
+            "trigger" : "hungry",
+            "source" : "main",
             "dest" : "hungry"
         },
+        
         {
-            "trigger" : "eat",
+            "trigger" : "back",
             "source" : "hungry",
-            "dest" : "hanging out"
+            "dest" : "main"
+        },
+
+        {
+            "trigger" : "signup",
+            "source" : "signup",
+            "dest" : "name"
         },
         {
-            "trigger" : "distress_call",
-            "source" : "*",
-            "dest" : "saving the world"
+            "trigger" : "back",
+            "source" : "name",
+            "dest" : "signup"
+        },
+
+        {
+            "trigger" : "name",
+            "source" : "name",
+            "dest" : "mail"
+        },
+
+        {
+            "trigger" : "back",
+            "source" : "mail",
+            "dest" : "name"
+        },
+
+        {
+            "trigger" : "check",
+            "source" : "mail",
+            "dest" : "check"
+        },
+
+        {
+            "trigger" : "back",
+            "source" : "check",
+            "dest" : "mail"
+        },
+
+        {
+            "trigger" : "done",
+            "source" : "check",
+            "dest" : "main"
+        },
+
+        {
+            "trigger" : "getimg",
+            "source" : "boaring",
+            "dest" : "getimg"
+        },
+        {   
+            "trigger" : "back",
+            "source" : "getimg",
+            "dest" : "boaring"
         },
         {
-            "trigger" : "complete_mission",
-            "source" : "saving the world",
-            "dest" : "sweaty"
+            "trigger" : "acg",
+            "source" : "getimg",
+            "dest" : "acgimg"
+        },
+        {   
+            "trigger" : "back",
+            "source" : "acgimg",
+            "dest" : "getimg"
         },
         {
-            "trigger" : "clean_up",
-            "source" : "sweaty",
-            "dest" : "asleep"
+            "trigger" : "meme",
+            "source" : "getimg",
+            "dest" : "memeimg"
+        },
+        {   
+            "trigger" : "back",
+            "source" : "memeimg",
+            "dest" : "getimg"
         },
         {
-            "trigger" : "clean_up",
-            "source" : "sweaty",
-            "dest" : "hanging out"
+            "trigger" : "play",
+            "source" : "boaring",
+            "dest" : "play"
         },
-        {
-            "trigger" : "nap",
-            "source" :  "*", 
-            "dest" : "asleep"
-        }               
+        {   
+            "trigger" : "back",
+            "source" : "play",
+            "dest" : "boaring"
+        }
+
     ],
-    "init" : "asleep"
+    "init" : "main"
 }
