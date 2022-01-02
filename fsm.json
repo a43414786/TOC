@@ -1,5 +1,5 @@
 {
-    "states":["main","stock_end","stock_name","stock_id","stock","stock_date","hungry","getimg","acgimg","memeimg","boaring","play","signup","name","mail","check"],
+    "states":["main","stock_end","stock_name","stock_id","stock","stock_date","getimg","acgimg","memeimg","boaring","play","signup","name","mail","check"],
 
     "state":
     [
@@ -88,18 +88,6 @@
         },
 
         {
-            "trigger" : "hungry",
-            "source" : "main",
-            "dest" : "hungry"
-        },
-        
-        {
-            "trigger" : "back",
-            "source" : "hungry",
-            "dest" : "main"
-        },
-
-        {
             "trigger" : "signup",
             "source" : "signup",
             "dest" : "name"
@@ -182,5 +170,5 @@
         }
 
     ],
-    "init" : "main"
+    "init" : "signup"
 }

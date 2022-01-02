@@ -37,15 +37,7 @@ def create_fsm_graph(model):
                             initial=data["init"],
                             auto_transitions=False,
                             show_conditions=True,)
-'''
+
 model = create_fsm()
 create_fsm_graph(model)
 model.get_graph().draw('my_fsm.png', prog='dot')
-'''
-'''model = create_fsm()
-create_fsm_graph(model)
-model.get_graph().draw('my_fsm.png', prog='dot')
-img = cv2.imread('my_fsm.png')
-cv2.imshow("img",img)
-cv2.waitKey(0)'''
-    

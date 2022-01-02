@@ -1,9 +1,4 @@
-from linebot import (LineBotApi, WebhookHandler)
-from linebot import exceptions
-from linebot.exceptions import (InvalidSignatureError)
 from linebot.models import *
-
-
 
 def main_template():
     message = TemplateSendMessage(
@@ -17,11 +12,6 @@ def main_template():
                 PostbackTemplateAction(
                     label="找點樂子",
                     data="boaring",
-                ),
-                
-                PostbackTemplateAction(
-                    label="肚子餓了",
-                    data="hungry",
                 ),
                 PostbackTemplateAction(
                     label="股票查詢",

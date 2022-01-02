@@ -9,17 +9,10 @@ from linebot.exceptions import (
 from linebot.models import *
 
 
-#======這裡是呼叫的檔案內容=====
-from message import *
 from Function import *
-#======這裡是呼叫的檔案內容=====
-
-#======python的函數庫==========
-import tempfile, os
-import datetime
-import time
+import os
 import numpy as np
-#======python的函數庫==========
+
 import fsm
 import images
 
@@ -70,16 +63,6 @@ def handle_message(event):
     uid=event.source.user_id
     register = check_regist(uid)
     cur_fsm = register['fsm']
-    '''
-    line_bot_api.reply_message(event.reply_token,LocationSendMessage( 
-        type = 'location',
-        title = 'my location',
-        address = "〒150-0002 東京都渋谷区渋谷２丁目２１−１",
-        latitude = 35.65910807942215,
-        longitude = 139.70372892916203
-    ))
-    line_bot_api.reply_message(event.reply_token, TextSendMessage(stock_data('2021/12/30',name = msg,mode = 1)))
-    '''
     
     if(cur_fsm.state == "boaring"):
 
@@ -118,29 +101,7 @@ def handle_message(event):
         check(msg,cur_fsm,line_bot_api,event)
 
     elif cur_fsm.state == 'main':
-        if '最新合作廠商' in msg:
-            message = imagemap_message()
-            line_bot_api.reply_message(event.reply_token, message)
-        elif '最新活動訊息' in msg:
-            message = stock_template()
-            line_bot_api.reply_message(event.reply_token, message)
-        elif '註冊會員' in msg:
-            message = Confirm_Template()
-            line_bot_api.reply_message(event.reply_token, message)
-        elif '旋轉木馬' in msg:
-            message = Carousel_Template()
-            line_bot_api.reply_message(event.reply_token, message)
-        elif '圖片畫廊' in msg:
-            message = Carousel_Template()
-            line_bot_api.reply_message(event.reply_token, message)
-        elif '功能列表' in msg:
-            message = function_list()
-            line_bot_api.reply_message(event.reply_token, message)
-        '''
-        else:
-            message = TextSendMessage(text=msg)
-            line_bot_api.reply_message(event.reply_token, message)
-        '''
+        
         main(msg,cur_fsm,line_bot_api,event)
 
     
@@ -174,20 +135,7 @@ def handle_message(event):
     uid=event.source.user_id
     register = check_regist(uid)
     cur_fsm = register['fsm']
-    '''
-    img = acgimgs[np.random.randint(0,len(acgimgs))]
-    if(cur_fsm.state == "asleep"):
-        richMenuId = "richmenu-dc653454b166c2c694065736112e8701"
-        line_bot_api.link_rich_menu_to_user(uid,richMenuId)
-        cur_fsm.wake_up()
-        line_bot_api.reply_message(event.reply_token, ImageSendMessage(img,img))
-    elif(cur_fsm.state == "hanging out"):
-        richMenuId = "richmenu-de89ddf86b7fb76b49e9c43a88635a6d"
-        line_bot_api.link_rich_menu_to_user(uid,richMenuId)
-        cur_fsm.done()
-        line_bot_api.reply_message(event.reply_token, ImageSendMessage(img,img))
-    '''
-
+    
     if(cur_fsm.state == "boaring"):
 
         if(event.postback.data == 'getimg'):
@@ -283,29 +231,12 @@ def handle_message(event):
             cur_fsm.back()
             line_bot_api.reply_message(event.reply_token, boaring_template())
     
-    elif cur_fsm.state == "signup":
-        
-        pass
-        
-    elif cur_fsm.state == "name":
-
-        pass
-    
-    elif cur_fsm.state == "mail":
-        
-        pass
-    
-    elif cur_fsm.state == "check":
-
-        pass
-    
+     
     elif cur_fsm.state == 'main':
     
         if(event.postback.data == 'boaring'):
             cur_fsm.boaring()
             line_bot_api.reply_message(event.reply_token,boaring_template())
-        elif(event.postback.data == 'hungry'):
-            cur_fsm.hungry()
         elif(event.postback.data == 'stock'):
             cur_fsm.stock()
             line_bot_api.reply_message(event.reply_token,stock_template())
@@ -314,6 +245,7 @@ def handle_message(event):
 
         if(event.postback.data == 'back'):
             cur_fsm.back()
+            line_bot_api.reply_message(event.reply_token,main_template())
         else:
             stock(event.postback.params['date'],cur_fsm,line_bot_api,event)
 
@@ -321,17 +253,6 @@ def handle_message(event):
 
         stock_date(event.postback.data,cur_fsm,line_bot_api,event)
     
-    elif cur_fsm.state == 'stock_id':
-
-        pass
-    
-    elif cur_fsm.state == 'stock_name':
-
-        pass
-    
-    elif cur_fsm.state == 'stock_end':
-
-        pass
     
 
 
